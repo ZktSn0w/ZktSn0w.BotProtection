@@ -1,0 +1,18 @@
+prototype(ZktSn0w.BotProtection:BotProtectedContent) < prototype(Neos.Fusion:Component) {
+  // Fallback Content
+  fallback = null
+
+  content = null
+
+  renderer = Neos.Fusion:Case {
+    isBot {
+      condition = ${ZktSn0w.BotProtection.isBot(request.httpRequest)}
+      renderer = ${props.fallback}
+    }
+
+    default {
+      condition = true
+      renderer = ${props.content}
+    }
+  }
+}

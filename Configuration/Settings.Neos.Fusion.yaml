@@ -1,0 +1,4 @@
+Neos:
+  Fusion:
+    defaultContext:
+      'ZktSn0w.BotProtection': 'ZktSn0w\BotProtection\Eel\Helper\BotDetection'
