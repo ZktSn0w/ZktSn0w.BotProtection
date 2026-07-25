@@ -1,18 +1,22 @@
-prototype(ZktSn0w.BotProtection:BotProtectedContent) < prototype(Neos.Fusion:Component) {
-  // Fallback Content
+prototype(ZktSn0w.BotProtection:BotProtectedContent) {
+  @class = 'ZktSn0w\\BotProtection\\Fusion\\BotProtectedContentImplementation'
   fallback = null
-
   content = null
+  identifier = null
+  @context.identifierForCacheTag = ${this.identifier}
 
-  renderer = Neos.Fusion:Case {
-    isBot {
-      condition = ${ZktSn0w.BotProtection.isBot(request.httpRequest)}
-      renderer = ${props.fallback}
+  @cache {
+    mode = 'dynamic'
+    entryIdentifier {
+      isBot = ${ZktSn0w.BotProtection.isBot(request.httpRequest) ? "is-bot" : "not-a-bot"}
     }
 
-    default {
-      condition = true
-      renderer = ${props.content}
+    context {
+      1 = 'identifierForCacheTag'
+    }
+
+    entryTags {
+      1 = ${identifierForCacheTag ? "zktsn0w_botprotection__" + identifierForCacheTag : null}
     }
   }
 }

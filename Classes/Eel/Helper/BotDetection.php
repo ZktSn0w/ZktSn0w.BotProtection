@@ -6,22 +6,20 @@ namespace ZktSn0w\BotProtection\Eel\Helper;
 use GuzzleHttp\Psr7\Request;
 use Neos\Eel\ProtectedContextAwareInterface;
 use Jaybizzle\CrawlerDetect\CrawlerDetect;
+use Neos\Flow\Annotations as Flow;
+use ZktSn0w\BotProtection\Interface\DetectionServiceInterface;
 
 class BotDetection implements ProtectedContextAwareInterface {
 
+    #[Flow\Inject]
+    protected DetectionServiceInterface $detectionService;
     /**
      * Detect if its a Bot / Crawler / etc.
      *
      * @return bool
      */
     public function isBot(Request $httpRequest) {
-        $crawlerDetect = new CrawlerDetect();
-        if($httpRequest->hasHeader("User-Agent")) {
-            $headers = $httpRequest->getHeader("User-Agent");
-            return array_any($headers, fn($header) => $crawlerDetect->isCrawler($header));
-        }
-
-        return false;
+        return $this->detectionService->isBot($httpRequest);
     }
 
     /**
