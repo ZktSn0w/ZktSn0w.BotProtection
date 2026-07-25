@@ -1,7 +1,8 @@
 {
-    "description": "",
+    "description": "Extensible Neos package for bot/crawler detection via User-Agent with Fusion prototypes, Eel helpers, and a swappable PHP service layer.",
     "type": "neos-package",
     "name": "zktsn0w/botprotection",
+    "version": "1.0",
     "require": {
         "neos/flow": "*",
         "jaybizzle/crawler-detect": "^1.4",
