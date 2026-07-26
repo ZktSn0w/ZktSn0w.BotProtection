@@ -4,7 +4,7 @@
     "name": "zktsn0w/botprotection",
     "version": "1.0",
     "require": {
-        "neos/flow": "*",
+        "neos/flow": "^9.0",
         "jaybizzle/crawler-detect": "^1.4",
         "neos/neos": "^9.0"
     },
